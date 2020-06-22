@@ -5,17 +5,6 @@ import {DISHES} from './shared/dishes';
 // import logo from './logo.svg';
 import './App.css';
 
-// function App() {
-//   return (
-//     <div>
-//       <Navbar color="info">
-//         <div className = "container"> <NavbarBrand>Starter</NavbarBrand> </div>
-//       </Navbar>
-//       <Menu />
-//     </div>
-//   );
-// }
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -26,8 +15,8 @@ class App extends Component {
   render(){
     return(
       <div>
-       <Navbar color="info">
-         <div className = "container"> <NavbarBrand>Starter</NavbarBrand> </div>
+       <Navbar dark color="primary">
+         <div className = "container"> <NavbarBrand href='/'>Ristorante Con Fusion</NavbarBrand> </div>
        </Navbar>
        <Menu dishes={this.state.dishes} />
      </div>
