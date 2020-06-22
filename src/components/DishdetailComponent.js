@@ -1,14 +1,13 @@
 import React,{Component} from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle } from 'reactstrap';
 class DishDetail extends Component{
+
     renderComments(comments){
         const com = comments.map(( dishComment )=>{
-            var d = new Date(dishComment.date);
-            var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
             return(
                 <ul className = "list-unstyled">
                     <li>{dishComment.comment}</li>
-                    <li>-- <span>{dishComment.author}</span>, <span>{months[d.getMonth()]}</span> <span>{d.getDate()+1}</span>, <span>{d.getFullYear()}</span></li>
+                    <li><p>--- {dishComment.author}, {new Intl.DateTimeFormat('en-US', {year : 'numeric', month: 'short', day:'2-digit'}).format(new Date(Date.parse(dishComment.date)))} </p></li>
                 </ul>
             );
         });
@@ -40,16 +39,25 @@ class DishDetail extends Component{
     };
 
     render(){
+        if (this.props.dish != null){
         return (
-            <div className = 'row'>
-                <div  className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.dish)}
-                </div>
-                <div  className="col-12 col-md-5 m-1">
-                    {this.renderComments(this.props.dish.comments)}
+            <div className='container'>
+                <div className = 'row'>
+                    <div  className="col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.dish)}
+                    </div>
+                    <div  className="col-12 col-md-5 m-1">
+                        {this.renderComments(this.props.dish.comments)}
+                    </div>
                 </div>
             </div>
         );
+        }
+        else{
+            return (
+                <div></div>
+            )
+        }
     }
 }
 export default DishDetail;
