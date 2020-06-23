@@ -66,7 +66,7 @@ class Contact extends Component {
             errors.telnum = 'Tel. number should contain only numnbers'
         }
 
-        if(this.state.touched.email && email.split('').filter(x=>x==='@').length!=1)
+        if(this.state.touched.email && email.split('').filter(x=>x==='@').length!==1)
             errors.email = 'Email should contain a @'
         
         return errors;
