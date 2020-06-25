@@ -6,7 +6,7 @@ import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
 
-function RenderComments({comments, addComment, dishId}){
+function RenderComments({comments, postComment, dishId}){
     const com = comments.map(( dishComment )=>{
         return(
             <ul className = "list-unstyled">
@@ -22,7 +22,7 @@ function RenderComments({comments, addComment, dishId}){
                 <h4>Comments</h4>
                 {com}
                 <CommentForm
-                    dishId={dishId} addComment={addComment}
+                    dishId={dishId} postComment={postComment}
                 />
             </div>
         );
@@ -60,7 +60,7 @@ class CommentForm extends Component{
     }
     handleSubmit(values){
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     }
     toggleModal(){
         this.setState({
@@ -178,7 +178,7 @@ const DishDetail = (props) => {
                         <div className="col-12 col-md-5 m-1">
                             <RenderComments
                                 comments={props.comments}
-                                addComment={props.addComment}
+                                postComment={props.postComment}
                                 dishId={props.dish.id}
                             />
                         </div>
